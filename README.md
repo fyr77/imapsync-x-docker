@@ -7,4 +7,14 @@ Most of the code in this repository is directly taken from https://imapsync.lami
 
 ### Docker Compose
 
-TODO.
+```yaml
+version: '3.6'
+
+services:
+  imapsync-x:
+    image: ghcr.io/fyr77/imapsync-x-docker/imapsync-x:main
+    container_name: imapsync-x
+    ports:
+      - 13531:80
+    restart: unless-stopped
+```
