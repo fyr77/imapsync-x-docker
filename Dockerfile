@@ -63,8 +63,10 @@ RUN set -xe \
   && sed -i '/Require all granted/r add.txt' /etc/apache2/conf-enabled/serve-cgi-bin.conf \
   && a2enmod cgi \
   && cd /usr/lib/cgi-bin \
-  && chmod +x imapsync oauth2.py
-  #&& ./imapsync --testslive && ./imapsync --tests # just_a_comment_to_force_update 2022_04_04_21_16_50
+  && chmod +x imapsync oauth2.py \
+  && cd /var/www/html \
+  && ln -s imapsync_form_extra.html index.html
+  
 
 EXPOSE 80
 
