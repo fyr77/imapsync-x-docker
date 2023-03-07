@@ -59,8 +59,10 @@ RUN set -xe && \
 
 RUN set -xe \
   && cd \
-  && echo "SetEnv no-gzip 1" > add.txt \  
+  && echo "SetEnv no-gzip 1" > add.txt \
   && sed -i '/Require all granted/r add.txt' /etc/apache2/conf-enabled/serve-cgi-bin.conf \
+  && echo "TimeOut 3600" > add.txt \
+  && sed -i '/Define ENABLE_USR_LIB_CGI_BIN/r add.txt' /etc/apache2/conf-enabled/serve-cgi-bin.conf \
   && a2enmod cgi \
   && cd /usr/lib/cgi-bin \
   && chmod +x imapsync oauth2.py \
